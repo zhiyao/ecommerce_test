@@ -9,6 +9,7 @@
 #  price           :decimal(, )
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  image           :string
 #
 
 class Product < ActiveRecord::Base
@@ -16,4 +17,6 @@ class Product < ActiveRecord::Base
 
   belongs_to :sub_category, inverse_of: :products
   delegate :name, to: :sub_category, prefix: true, nil: true
+
+  mount_uploader :image, ImageUploader
 end

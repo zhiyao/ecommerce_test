@@ -53,7 +53,7 @@ module Admin
     end
 
     def product_params
-      params[:product].permit(:name, :description, :price, :sub_category_id)
+      params[:product].permit(:name, :description, :price, :sub_category_id, :image)
     end
   end
 

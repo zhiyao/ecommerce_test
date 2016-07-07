@@ -15,4 +15,9 @@
     = f.label :sub_category
     = f.collection_select :sub_category_id, SubCategory.all, :id, :name
 
+  .form-group.form-group-label
+    = f.label :image
+    = f.file_field :image
+
   = f.submit 'Save', class: 'btn btn-green'
+  = link_to 'Cancel', admin_products_path, class: 'btn-red btn-flat'
