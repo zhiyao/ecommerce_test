@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'awesome_nested_set', '~> 3.1.1'
 gem 'material-sass'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'annotate', require: false

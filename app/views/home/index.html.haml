@@ -4,3 +4,7 @@
       %h1.text-center SHOP
       = render 'shared/navigation'
 
+      - @categories.each do |category|
+        %div.category-box{style: "background-image: url(#{category.banner.large})"}
+          = link_to category_path(category), class: 'btn-outline' do
+            = category.name

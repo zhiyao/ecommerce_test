@@ -7,6 +7,7 @@
 #  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  banner     :string
 #
 
 class Category < ActiveRecord::Base
@@ -17,6 +18,8 @@ class Category < ActiveRecord::Base
 
   after_create :set_root
   after_save :set_root_sub_category_name
+
+  mount_uploader :banner, CategoryBannerUploader
 
   private
 

@@ -7,6 +7,7 @@
 #  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  banner     :string
 #
 
 require 'test_helper'

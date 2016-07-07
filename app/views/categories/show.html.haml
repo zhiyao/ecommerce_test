@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-md-12
+      %h1.text-center SHOP
+      = render 'shared/navigation'
+
+.banner-image{style: "background-image: url(#{@category.banner.large})"}
+%h2.text-center= @category.name

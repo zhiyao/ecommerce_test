@@ -51,7 +51,7 @@ module Admin
     end
 
     def category_params
-      params[:category].permit(:name, :position)
+      params[:category].permit(:name, :position, :banner)
     end
   end
 end

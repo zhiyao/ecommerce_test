@@ -7,6 +7,10 @@
     = f.label :position
     = f.number_field :position, class: 'form-control'
 
+  .form-group.form-group-label
+    = f.label :banner
+    = f.file_field :banner
+
   = f.submit 'Save', class: 'btn btn-green'
   &nbsp;&nbsp;&nbsp;
   = link_to 'Cancel', admin_categories_path, class: 'btn-red btn-flat'
