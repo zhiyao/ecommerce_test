@@ -1,4 +1,8 @@
-%h1 Admin
+= content_for :header do
+  %h1 Products
+
+.pull-right.margin-bottom
+  = link_to 'Add', new_admin_product_path, class: 'btn btn-green waves-attach waves-circle'
 
 %table.table
   %thead
@@ -20,4 +24,3 @@
           method: :delete,
           data: { confirm: "Are you sure?" }
 
-= link_to 'New', new_admin_product_path

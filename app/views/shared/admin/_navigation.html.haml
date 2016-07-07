@@ -1,2 +1,4 @@
-= link_to 'Products', admin_products_path
-= link_to 'Categories', admin_categories_path
+%li{class: "#{active_link?(['products'])}"}
+  = link_to 'Products', admin_products_path
+%li{class: "#{active_link?(['categories'])}"}
+  = link_to 'Categories', admin_categories_path

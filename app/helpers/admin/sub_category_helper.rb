@@ -22,13 +22,13 @@ module Admin
         crumbs << sub_category.ancestors.collect do |ancestor|
           unless sub_category.ancestors.empty?
             unless ancestor.root?
-              content_tag(:li, (ancestor.name + ' ' + seperator).html_safe )
+              content_tag(:li, (ancestor.name + seperator).html_safe )
             else
               ''
             end
           end
         end
-        crumbs << content_tag(:li, (sub_category.name + ' ' + seperator).html_safe)
+        crumbs << content_tag(:li, (sub_category.name + seperator).html_safe)
       else
         crumbs << content_tag(:li, content_tag(:span, 'Categories'))
       end

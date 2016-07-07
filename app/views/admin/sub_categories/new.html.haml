@@ -1,17 +1,20 @@
+= content_for :header do
+  %h1 New Sub Category
+
 = link_to 'Categories', admin_categories_path
 = breadcrumbs(@category, @sub_category_parent)
 
-
 = form_for [:admin, @category, @sub_category] do |f|
-  = f.label :name
-  = f.text_field :name
-  %br
+  .form-group.form-group-label
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
 
-  = f.label :position
-  = f.number_field :position
-  %br
+  .form-group.form-group-label
+    = f.label :position
+    = f.number_field :position, class: 'form-control'
 
-  = f.label :parent
-  = f.collection_select :parent_id, SubCategory.all, :id, :name, { selected: @sub_category_parent_id }
+  .form-group.form-group-label
+    = f.label :parent
+    = f.collection_select :parent_id, SubCategory.all, :id, :name, { selected: @sub_category_parent_id }, class: 'form-control'
 
-  = f.submit
+  = f.submit 'Save', class: 'btn btn-green'

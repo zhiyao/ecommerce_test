@@ -1,10 +1,12 @@
 = form_for [:admin, category] do |f|
-  = f.label :name
-  = f.text_field :name
-  %br
+  .form-group.form-group-label
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
 
-  = f.label :position
-  = f.number_field :position
-  %br
+  .form-group.form-group-label
+    = f.label :position
+    = f.number_field :position, class: 'form-control'
 
-  = f.submit
+  = f.submit 'Save', class: 'btn btn-green'
+  &nbsp;&nbsp;&nbsp;
+  = link_to 'Cancel', admin_categories_path, class: 'btn-red btn-flat'

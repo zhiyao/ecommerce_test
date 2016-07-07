@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'awesome_nested_set', '~> 3.1.1'
+gem 'material-sass'
 
 group :development, :test do
   gem 'annotate', require: false

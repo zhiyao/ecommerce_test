@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   namespace :admin do
+    root 'products#index'
     resources :products
     resources :categories do
       resources :sub_categories

@@ -1,11 +1,18 @@
-%h1 Edit Category
+= content_for :header do
+  %h1 Edit Category
 
-= render 'form', category: @category
+.row
+  .col-md-8
+    = render 'form', category: @category
 
-%hr
-%h2 Category Tree
+  .col-md-4
+    .card
+      .card-main
+        .card-inner
+          %h2.card-heading Category Tree
+          %p Click on the + button next to the sub category to create a child sub category
 
-= @category.root.name
-= link_to '+', new_admin_category_sub_category_path(@category, parent: @category.root)
-%br
-= sub_category_preview(@category, @category.root)
+          = @category.root.name
+          = link_to '+', new_admin_category_sub_category_path(@category, parent: @category.root)
+          %br
+          = sub_category_preview(@category, @category.root)

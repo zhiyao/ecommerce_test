@@ -7,9 +7,39 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>Shop Admin</h1>
-  <%= render 'shared/admin/navigation' %>
-  <%= yield %>
+  <main class="content">
+    <div class="content-header ui-content-header">
+
+      <div class="header header-transparent header-waterfall ui-header affix-top">
+        <span class="header-logo">Shop Admin</span>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content-header ui-content-header">
+              <%= yield :header %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-inner margin-top-no">
+            <nav class="tab-nav ui-tab">
+              <ul class="nav nav-list">
+                <%= render 'shared/admin/navigation' %>
+              </ul>
+            </nav>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
 </body>
 </html>
