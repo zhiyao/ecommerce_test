@@ -1,0 +1,11 @@
+%h1 Edit Category
+
+= render 'form', category: @category
+
+%hr
+%h2 Category Tree
+
+= @category.root.name
+= link_to '+', new_admin_category_sub_category_path(@category, parent: @category.root)
+%br
+= sub_category_preview(@category, @category.root)

@@ -33,12 +33,20 @@ ActiveRecord::Schema.define(version: 20160705052802) do
   end
 
   create_table "sub_categories", force: :cascade do |t|
-    t.integer  "parent_id"
     t.string   "name"
     t.integer  "position"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "parent_id"
+    t.integer  "lft",                        null: false
+    t.integer  "rgt",                        null: false
+    t.integer  "depth",          default: 0, null: false
+    t.integer  "children_count", default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
+
+  add_index "sub_categories", ["lft"], name: "index_sub_categories_on_lft", using: :btree
+  add_index "sub_categories", ["parent_id"], name: "index_sub_categories_on_parent_id", using: :btree
+  add_index "sub_categories", ["rgt"], name: "index_sub_categories_on_rgt", using: :btree
 
 end

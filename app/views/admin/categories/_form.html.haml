@@ -1,0 +1,10 @@
+= form_for [:admin, category] do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+
+  = f.label :position
+  = f.number_field :position
+  %br
+
+  = f.submit

@@ -15,4 +15,5 @@ class Product < ActiveRecord::Base
   validates :name, :description, :price, presence: true
 
   belongs_to :sub_category, inverse_of: :products
+  delegate :name, to: :sub_category, prefix: true, nil: true
 end

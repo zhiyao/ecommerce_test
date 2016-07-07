@@ -1,0 +1,18 @@
+= form_for [:admin, product] do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+
+  = f.label :description
+  = f.text_area :description
+  %br
+
+  = f.label :price
+  = f.number_field :price
+  %br
+
+  = f.label :sub_category
+  = f.collection_select :sub_category_id, SubCategory.all, :id, :name
+  %br
+
+  = f.submit

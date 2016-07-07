@@ -12,8 +12,12 @@
 #
 
 class SubCategory < ActiveRecord::Base
-  belongs_to :category, inverse_of: :sub_categories
+  acts_as_nested_set dependent: :destroy,
+    order_column: :position
 
   validates :name, presence: true
+
+  belongs_to :category, inverse_of: :sub_categories
   has_many :products, inverse_of: :sub_category
+
 end

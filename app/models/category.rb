@@ -18,8 +18,6 @@ class Category < ActiveRecord::Base
   after_create :set_root
   after_save :set_root_sub_category_name
 
-  default_scope { order("#{self.table_name}.position, #{self.table_name}.created_at") }
-
   private
 
   def set_root

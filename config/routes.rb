@@ -11,5 +11,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products
+    resources :categories do
+      resources :sub_categories
+    end
   end
 end
