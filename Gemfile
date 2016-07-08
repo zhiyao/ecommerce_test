@@ -16,6 +16,7 @@ gem 'awesome_nested_set', '~> 3.1.1'
 gem 'material-sass'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'ransack'
 
 group :development, :test do
   gem 'annotate', require: false

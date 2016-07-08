@@ -24,4 +24,10 @@ class SubCategory < ActiveRecord::Base
   belongs_to :category, inverse_of: :sub_categories
   has_many :products, inverse_of: :sub_category
 
+  def node_and_descendants_ids
+    array = self.descendants.pluck(:id)
+    array.push(self.id)
+    array.push(-1)
+  end
+
 end

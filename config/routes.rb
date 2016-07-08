@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :categories
+  resources :sub_categories
 
   namespace :admin do
     root 'products#index'

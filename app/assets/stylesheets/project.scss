@@ -1,3 +1,5 @@
+@import "variables";
+
 .ui-content-header {
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -58,5 +60,45 @@
   background-size: cover;
   width: 100%;
   background-position: center;
+}
 
+.products-grid {
+  min-height: 560px;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.product-box {
+  position: relative;
+  height: 350px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .product-image {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .product-name {
+    font-size: 2em;
+    text-align: center;
+    color: $dark_gray;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.1em;
+  }
+
+  .product-price {
+    font-size: 1em;
+    text-align: center;
+    color: $gray;
+  }
 }
