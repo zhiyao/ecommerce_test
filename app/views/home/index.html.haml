@@ -6,5 +6,5 @@
 
       - @categories.each do |category|
         %div.category-box{style: "background-image: url(#{category.banner.large})"}
-          = link_to category_path(category), class: 'btn-outline' do
+          = link_to sub_category_path(category.root), class: 'btn-outline' do
             = category.name

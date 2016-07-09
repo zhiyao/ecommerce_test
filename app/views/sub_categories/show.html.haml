@@ -4,18 +4,20 @@
       %h1.text-center SHOP
       = render 'shared/navigation'
 
-.banner-image{style: "background-image: url(#{@category.banner.large})"}
-%h2.text-center= @category.name
-
+- if !@category.nil?
+  .banner-image{style: "background-image: url(#{@category.banner.large})"}
 
 .container
   .row
     .col-md-12
+      = product_breadcrumbs @sub_category
       .products-grid
         - @products.each do |product|
           .product-box
-            = image_tag product.image, class: 'product-image'
-            .product-name
-              = product.name
-            .product-price
-              = number_to_currency(product.price)
+            = link_to product_path(product), class: 'product-image-wrapper' do
+              = image_tag product.image, class: 'product-image'
+            .product-information
+              .product-name
+                = product.name
+              .product-price
+                = number_to_currency(product.price)

@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
-    @categories = Category.all
+    @categories = Category.active
 
     @sub_category_ids = @category.root.node_and_descendants_ids
 

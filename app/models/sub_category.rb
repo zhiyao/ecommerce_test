@@ -23,6 +23,13 @@ class SubCategory < ActiveRecord::Base
 
   belongs_to :category, inverse_of: :sub_categories
   has_many :products, inverse_of: :sub_category
+  scope :active, -> { select('sub_category.id, count(products.id) as n_products').
+                 having('n_products > 10') }
+
+  def has_products?
+    total_product_count = self.self_and_descendants.inject(0) {|sum, n| sum + n.products.size}
+    total_product_count > 0
+  end
 
   def node_and_descendants_ids
     array = self.descendants.pluck(:id)

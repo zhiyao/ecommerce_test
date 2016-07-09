@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :sub_categories
+  resources :products
 
   namespace :admin do
     root 'products#index'
