@@ -3,3 +3,32 @@
     .col-md-12
       %h1.text-center SHOP
       = render 'shared/navigation'
+
+.container
+  .row
+    .col-md-3
+      .card
+        .card-main
+          .card-inner
+            %h2.card-heading Categories
+            = form_tag '', method: :get do
+              %ul
+                - @categories.each do |category|
+                  %li
+                    = check_box_tag("sub_category_ids[]", category.root.id)
+                    = category.name
+                    = product_sub_category(category, category.root)
+              %hr
+              = submit_tag 'Search', class: 'btn'
+
+    .col-md-9
+      .products-grid
+        - @products.each do |product|
+          .product-box
+            = link_to product_path(product), class: 'product-image-wrapper' do
+              = image_tag product.image, class: 'product-image'
+            .product-information
+              .product-name
+                = product.name
+              .product-price
+                = number_to_currency(product.price)

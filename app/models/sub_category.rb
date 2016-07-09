@@ -31,10 +31,17 @@ class SubCategory < ActiveRecord::Base
     total_product_count > 0
   end
 
-  def node_and_descendants_ids
-    array = self.descendants.pluck(:id)
-    array.push(self.id)
-    array.push(-1)
+  def self.set_node_and_descendants_ids(sub_category_ids)
+    set = Set.new
+    sub_categories = SubCategory.find(sub_category_ids)
+    sub_categories.each do |sub_category|
+      set += sub_category.node_and_descendants_ids
+    end
+    set
   end
 
+  def node_and_descendants_ids
+    array = self.self_and_descendants.pluck(:id)
+    array.push(-1)
+  end
 end

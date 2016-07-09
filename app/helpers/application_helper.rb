@@ -3,6 +3,22 @@ module ApplicationHelper
     'active' if controller_names.include?(controller.controller_name)
   end
 
+  def product_sub_category(category, sub_category)
+    return '' if sub_category.children.empty?
+
+    items = sub_category.children.map do |child|
+      if child.has_products?
+        content_tag(:li,
+          (check_box_tag("sub_category_ids[]", child.id) +
+          child.name +
+          product_sub_category(category, child)).html_safe)
+      end
+    end
+
+    content_tag(:ul, raw(items.join(' ')))
+  end
+
+
   def product_breadcrumbs(sub_category)
     seperator="&nbsp;&raquo;&nbsp;"
     return "" if sub_category.nil?
