@@ -13,6 +13,7 @@
 #  children_count :integer          default("0"), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  products_count :integer
 #
 
 class SubCategory < ActiveRecord::Base
@@ -23,8 +24,6 @@ class SubCategory < ActiveRecord::Base
 
   belongs_to :category, inverse_of: :sub_categories
   has_many :products, inverse_of: :sub_category
-  scope :active, -> { select('sub_category.id, count(products.id) as n_products').
-                 having('n_products > 10') }
 
   def has_products?
     total_product_count = self.self_and_descendants.inject(0) {|sum, n| sum + n.products.size}

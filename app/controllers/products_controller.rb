@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
     search_params = build_params || []
     @q = Product.ransack(search_params)
     @products = @q.result
-
   end
 
   def show

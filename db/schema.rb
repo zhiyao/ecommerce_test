@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707123707) do
+ActiveRecord::Schema.define(version: 20160709114843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160707123707) do
     t.integer  "children_count", default: 0, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "products_count"
   end
 
   add_index "sub_categories", ["lft"], name: "index_sub_categories_on_lft", using: :btree
