@@ -10,13 +10,16 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @categories = Category.active
     @sub_category = @product.sub_category
-    # @category = @sub_category.category
   end
 
   def build_params
+    if params[:sub_category_id]
+      sub_category = SubCategory.find(params[:sub_category_id])
+      return {sub_category_id_in: sub_category.node_and_descendants_ids}
+    end
     if params[:sub_category_ids]
       sub_category_ids = SubCategory.set_node_and_descendants_ids(params[:sub_category_ids])
-      {sub_category_id_in: sub_category_ids}
+      return {sub_category_id_in: sub_category_ids}
     end
   end
 end

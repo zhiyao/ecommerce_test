@@ -9,7 +9,21 @@
 
 .container
   .row
-    .col-md-12
+    .col-md-3
+      .card
+        .card-main
+          .card-inner
+            %h2.card-heading Categories
+            = form_tag products_path, method: :get do
+              %ul
+                %li
+                  = check_box_tag("sub_category_ids[]", @category.root.id)
+                  = @category.name
+                  = product_sub_category(@category, @category.root)
+              %hr
+              = submit_tag 'Search', class: 'btn'
+
+    .col-md-9
       = product_breadcrumbs @sub_category
       .products-grid
         - @products.each do |product|

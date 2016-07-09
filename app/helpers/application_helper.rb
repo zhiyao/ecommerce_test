@@ -18,26 +18,22 @@ module ApplicationHelper
     content_tag(:ul, raw(items.join(' ')))
   end
 
-
   def product_breadcrumbs(sub_category)
     seperator="&nbsp;&raquo;&nbsp;"
     return "" if sub_category.nil?
+
     crumbs = [content_tag(:li, link_to('Home', root_path) + seperator.html_safe)]
-    crumbs << content_tag(:li, link_to(sub_category.root.name, sub_category_path(sub_category.root)) + seperator.html_safe)
+    crumbs << content_tag(:li, link_to(sub_category.root.name, products_path(sub_category_id: sub_category.root)) + seperator.html_safe)
     if sub_category
-      crumbs << sub_category.ancestors.collect do |ancestor|
-        unless sub_category.ancestors.empty?
-          unless ancestor.root?
-            content_tag(:li, link_to(ancestor.name, sub_category_path(ancestor)) + seperator.html_safe )
-          else
-            ''
-          end
+      crumbs << sub_category.self_and_ancestors.collect do |ancestor|
+        if ancestor != sub_category.root
+          content_tag(:li, link_to(ancestor.name, products_path(sub_category_id: ancestor)) + seperator.html_safe )
+        else
+          ''
         end
       end
-      unless sub_category == sub_category.root
-        crumbs << content_tag(:li, link_to(sub_category.name, sub_category_path(sub_category) + seperator).html_safe)
-      end
     end
+
     crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join), class: 'inline')
     content_tag(:nav, crumb_list, id: 'breadcrumbs')
   end
