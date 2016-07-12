@@ -1,6 +1,5 @@
 module Admin
   class ProductsController < BaseController
-
     before_filter :get_product, only: [:edit, :show, :destroy, :update]
 
     def index
@@ -31,6 +30,7 @@ module Admin
           notice: 'Successfully updating product'
       else
         flash[:error] = 'Error updating product'
+        render 'edit'
       end
     end
 
@@ -41,8 +41,8 @@ module Admin
         redirect_to admin_products_path,
           notice: 'Successfully creating product'
       else
-        render 'new'
         flash[:error] = 'Error creating product'
+        render 'new'
       end
     end
 
@@ -56,5 +56,4 @@ module Admin
       params[:product].permit(:name, :description, :price, :sub_category_id, :image)
     end
   end
-
 end

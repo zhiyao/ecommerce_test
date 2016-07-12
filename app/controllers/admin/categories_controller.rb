@@ -1,6 +1,5 @@
 module Admin
   class CategoriesController < BaseController
-
     before_filter :get_category, only: [:edit, :show, :destroy, :update]
 
     def index
@@ -31,6 +30,7 @@ module Admin
           notice: 'Successfully updating category'
       else
         flash[:error] = 'Error updating product'
+        render 'edit'
       end
     end
 
@@ -42,6 +42,7 @@ module Admin
           notice: 'Successfully creating category'
       else
         flash[:error] = 'Error creating product'
+        render 'new'
       end
     end
 

@@ -23,11 +23,11 @@ module ApplicationHelper
     return "" if sub_category.nil?
 
     crumbs = [content_tag(:li, link_to('Home', root_path) + seperator.html_safe)]
-    crumbs << content_tag(:li, link_to(sub_category.root.name, products_path(sub_category_id: sub_category.root)) + seperator.html_safe)
+    crumbs << content_tag(:li, link_to(sub_category.root.name, products_path(sub_category_ids: [sub_category.root])) + seperator.html_safe)
     if sub_category
       crumbs << sub_category.self_and_ancestors.collect do |ancestor|
         if ancestor != sub_category.root
-          content_tag(:li, link_to(ancestor.name, products_path(sub_category_id: ancestor)) + seperator.html_safe )
+          content_tag(:li, link_to(ancestor.name, products_path(sub_category_ids: [ancestor])) + seperator.html_safe )
         else
           ''
         end

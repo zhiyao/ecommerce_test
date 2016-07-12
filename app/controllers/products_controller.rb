@@ -12,14 +12,17 @@ class ProductsController < ApplicationController
     @sub_category = @product.sub_category
   end
 
-  def build_params
-    if params[:sub_category_id]
-      sub_category = SubCategory.find(params[:sub_category_id])
-      return {sub_category_id_in: sub_category.node_and_descendants_ids}
-    end
-    if params[:sub_category_ids]
-      sub_category_ids = SubCategory.set_node_and_descendants_ids(params[:sub_category_ids])
-      return {sub_category_id_in: sub_category_ids}
-    end
+  private
+
+  def sub_category_params
+    params.permit(sub_category_ids: [])
   end
+
+  def build_params
+    if sub_category_params[:sub_category_ids]
+      sub_category_ids = SubCategory.set_node_and_descendants_ids(params[:sub_category_ids])
+    end
+    {sub_category_id_in: sub_category_ids}
+  end
+
 end

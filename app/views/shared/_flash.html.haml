@@ -1,0 +1,6 @@
+- if flash.any?
+  .card.card-brand-accent
+    .card-main
+      .card-inner
+        - flash.each do |key, value|
+          %div{class: "alert alert-#{key}"}= value
