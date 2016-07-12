@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def build_params
     if sub_category_params[:sub_category_ids]
-      sub_category_ids = SubCategory.set_node_and_descendants_ids(params[:sub_category_ids])
+      sub_category_ids = SubCategory.find_node_and_descendants_ids(params[:sub_category_ids])
     end
     {sub_category_id_in: sub_category_ids}
   end

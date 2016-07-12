@@ -20,17 +20,33 @@ gem 'ransack'
 
 group :development, :test do
   gem 'annotate', require: false
-  # Better Errors
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'quiet_assets'
+
+  # Testing
+  gem 'database_cleaner', '~> 1.4.0'
+  gem 'factory_girl_rails', '~> 4.6.0'
+  gem 'rspec-rails', '~> 3.3.0'
+  gem 'rspec-retry'
+  gem 'ffaker', '~> 2.0.0'
+  gem 'capybara', '~> 2.6.2'
+
+  gem 'spring', '~> 1.6.4'
+  gem 'spring-commands-rspec', '~> 1.0.4'
+  gem 'simplecov'
+
+  ## Linting
+  gem 'rubocop', '~> 0.38.0', require: false
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 2.8.0', require: false
+  gem 'email_spec', '~> 1.6.0'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # Better Errors
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 

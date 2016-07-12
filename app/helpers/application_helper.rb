@@ -7,7 +7,7 @@ module ApplicationHelper
     return '' if sub_category.children.empty?
 
     items = sub_category.children.map do |child|
-      if child.has_products?
+      if child.products?
         content_tag(:li,
           (check_box_tag("sub_category_ids[]", child.id) +
           child.name +
