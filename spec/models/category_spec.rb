@@ -26,7 +26,7 @@ RSpec.describe Category, type: :model do
 
     it "should has a product" do
       category = create(:category)
-      _product = create(:product, sub_category: category.root)
+      _product = create(:product, sub_categories: [category.root])
       expect(category.products?).to be_truthy
     end
   end

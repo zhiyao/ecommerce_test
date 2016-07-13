@@ -15,7 +15,8 @@
 class Product < ActiveRecord::Base
   validates :name, :price, presence: true
 
-  belongs_to :sub_category, inverse_of: :products, counter_cache: true
+  has_many :sub_categories_products, dependent: :destroy
+  has_many :sub_categories, through: :sub_categories_products
   delegate :name, to: :sub_category, prefix: true, nil: true
 
   mount_uploader :image, ImageUploader

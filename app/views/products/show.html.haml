@@ -8,7 +8,8 @@
     .col-md-4.col-md-offset-2
       = image_tag @product.image
     .col-md-4
-      = product_breadcrumbs(@sub_category)
+      - @sub_categories.each do |sub_category|
+        = product_breadcrumbs(sub_category)
       %h3.product-name= @product.name
       %p.product-price= number_to_currency @product.price
       %p.product-description= @product.description

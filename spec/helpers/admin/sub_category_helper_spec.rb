@@ -8,7 +8,7 @@ describe Admin::SubCategoryHelper do
       create(:sub_category, parent: root_sub_category)
       child = create(:sub_category, parent: root_sub_category)
       grandchild = create(:sub_category, parent: child)
-      product = create(:product, sub_category: grandchild)
+      create(:product, sub_categories: [grandchild])
 
       expect(helper.sub_category_tree(category, root_sub_category)).to match(grandchild.name)
     end
@@ -21,7 +21,7 @@ describe Admin::SubCategoryHelper do
       create(:sub_category, parent: root_sub_category)
       child = create(:sub_category, parent: root_sub_category)
       grandchild = create(:sub_category, parent: child)
-      product = create(:product, sub_category: grandchild)
+      create(:product, sub_categories: [grandchild])
 
       expect(helper.breadcrumbs(category, grandchild)).to match(grandchild.name)
     end

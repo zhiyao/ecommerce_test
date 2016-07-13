@@ -6,9 +6,9 @@ RSpec.describe ProductsController, type: :controller do
     before do
       @category = create(:category)
       @category2 = create(:category)
-      @product = create(:product, sub_category: @category.root)
-      @product2 = create(:product, sub_category: @category.root)
-      @product3 = create(:product, sub_category: @category2.root)
+      @product = create(:product, sub_categories: [@category.root])
+      @product2 = create(:product, sub_categories: [@category.root])
+      @product3 = create(:product, sub_categories: [@category2.root])
     end
 
     it "should show all the products if no search params" do
@@ -16,6 +16,7 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to be_success
       expect(response.body.match(@product.name)).to be_truthy
       expect(response.body.match(@product2.name)).to be_truthy
+      expect(response.body.match(@product3.name)).to be_truthy
     end
 
     it "should show products that is link to category" do
@@ -32,9 +33,9 @@ RSpec.describe ProductsController, type: :controller do
     before do
       @category = create(:category)
       @category2 = create(:category)
-      @product = create(:product, sub_category: @category.root)
-      @product2 = create(:product, sub_category: @category.root)
-      @product3 = create(:product, sub_category: @category2.root)
+      @product = create(:product, sub_categories: [@category.root])
+      @product2 = create(:product, sub_categories: [@category.root])
+      @product3 = create(:product, sub_categories: [@category2.root])
     end
 
     it "should render show and the correct product" do

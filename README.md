@@ -4,6 +4,13 @@ Ecommerce test is a simple Ruby on Rails e-commerce site. This is by no
 means a complete e-commerce site. It is meant for testing and
 experimenting
 
+1) It store product information
+2) listing all products through UI
+3) 
+4) User can filter products through UI by any or multiple categories.
+5) 
+6)
+
 ## Developing App
 
 Clone the Git repo

@@ -6,9 +6,9 @@ RSpec.describe SubCategoriesController, type: :controller do
     before do
       @category = create(:category)
       @category2 = create(:category)
-      @product = create(:product, sub_category: @category.root)
-      @product2 = create(:product, sub_category: @category.root)
-      @product3 = create(:product, sub_category: @category2.root)
+      @product = create(:product, sub_categories: [@category.root])
+      @product2 = create(:product, sub_categories: [@category.root])
+      @product3 = create(:product, sub_categories: [@category2.root])
       @category.reload
     end
 

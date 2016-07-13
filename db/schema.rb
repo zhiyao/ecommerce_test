@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709114843) do
+ActiveRecord::Schema.define(version: 20160713115905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,5 +51,14 @@ ActiveRecord::Schema.define(version: 20160709114843) do
   add_index "sub_categories", ["lft"], name: "index_sub_categories_on_lft", using: :btree
   add_index "sub_categories", ["parent_id"], name: "index_sub_categories_on_parent_id", using: :btree
   add_index "sub_categories", ["rgt"], name: "index_sub_categories_on_rgt", using: :btree
+
+  create_table "sub_categories_products", force: :cascade do |t|
+    t.integer  "sub_category_id"
+    t.integer  "product_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "sub_categories_products", ["sub_category_id", "product_id"], name: "index_sub_categories_products_on_sub_category_id_and_product_id", using: :btree
 
 end

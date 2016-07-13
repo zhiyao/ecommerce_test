@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @categories = Category.active
-    search_params = build_params || []
+    search_params = build_params
     @q = Product.ransack(search_params)
     @products = @q.result
   end
@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @categories = Category.active
-    @sub_category = @product.sub_category
+    @sub_categories = @product.sub_categories
   end
 
   private
@@ -19,10 +19,12 @@ class ProductsController < ApplicationController
   end
 
   def build_params
-    if sub_category_params[:sub_category_ids]
-      sub_category_ids = SubCategory.find_node_and_descendants_ids(params[:sub_category_ids])
+    if sub_category_params[:sub_category_ids].nil?
+      sub_category_ids = []
+    else
+      sub_category_ids = SubCategory.find_node_and_descendants_ids(sub_category_params[:sub_category_ids])
     end
-    {sub_category_id_in: sub_category_ids}
+    {sub_categories_id_in: sub_category_ids}
   end
 
 end

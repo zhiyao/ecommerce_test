@@ -31,13 +31,13 @@ RSpec.describe SubCategory, type: :model do
     end
 
     it "should be true if it has product under it" do
-      create(:product, sub_category: sub_category)
+      create(:product, sub_categories: [sub_category])
       expect(sub_category.products?).to be_truthy
     end
 
     it "should be true if a child sub category has a product" do
       child_sub_category = create(:sub_category, parent: sub_category)
-      create(:product, sub_category: child_sub_category)
+      create(:product, sub_categories: [child_sub_category])
       sub_category.reload
       expect(sub_category.products?).to be_truthy
     end

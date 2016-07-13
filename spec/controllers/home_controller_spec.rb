@@ -11,7 +11,7 @@ RSpec.describe HomeController, type: :controller do
     it "should render category that are active" do
       category = create(:category)
       category2 = create(:category)
-      product = create(:product, sub_category: category.root)
+      product = create(:product, sub_categories: [category.root])
 
       get :index
       expect(response.body.match(category.name)).to be_truthy

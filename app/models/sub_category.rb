@@ -23,7 +23,8 @@ class SubCategory < ActiveRecord::Base
   validates :name, presence: true
 
   belongs_to :category, inverse_of: :sub_categories
-  has_many :products, inverse_of: :sub_category
+  has_many :sub_categories_products, dependent: :destroy
+  has_many :products, through: :sub_categories_products
 
   def products?
     total_product_count = self.self_and_descendants.inject(0) {|sum, n| sum + n.products.size}
@@ -36,13 +37,10 @@ class SubCategory < ActiveRecord::Base
     sub_categories.each do |sub_category|
       set += sub_category.node_and_descendants_ids
     end
-    set
+    set.to_a
   end
 
   def node_and_descendants_ids
     array = self.self_and_descendants.pluck(:id)
-    # Pushing -1 is meant for ransack, in the case when there is no ids selected,
-    # it should return nothing
-    array.push(-1)
   end
 end

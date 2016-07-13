@@ -26,7 +26,7 @@ describe ApplicationHelper do
       create(:sub_category, parent: root_sub_category)
       child = create(:sub_category, parent: root_sub_category)
       grandchild = create(:sub_category, parent: child)
-      product = create(:product, sub_category: grandchild)
+      product = create(:product, sub_categories: [grandchild])
 
       expect(helper.sub_category_tree_filter(category, root_sub_category)).to match(grandchild.name)
     end
@@ -39,7 +39,7 @@ describe ApplicationHelper do
       create(:sub_category, parent: root_sub_category)
       child = create(:sub_category, parent: root_sub_category)
       grandchild = create(:sub_category, parent: child)
-      product = create(:product, sub_category: grandchild)
+      product = create(:product, sub_categories: [grandchild])
 
       expect(helper.product_breadcrumbs(grandchild)).to match(root_sub_category.name)
       expect(helper.product_breadcrumbs(grandchild)).to match(grandchild.name)
