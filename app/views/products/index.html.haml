@@ -12,12 +12,7 @@
           .card-inner
             %h2.card-heading Categories
             = form_tag '', method: :get do
-              %ul
-                - @categories.each do |category|
-                  %li
-                    = check_box_tag("sub_category_ids[]", category.root.id)
-                    = category.name
-                    = sub_category_tree_filter(category, category.root)
+              = category_tree_filter(@categories, params[:sub_category_ids])
               %hr
               = submit_tag 'Search', class: 'btn'
 

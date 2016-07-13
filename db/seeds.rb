@@ -1,7 +1,6 @@
 def image(name, folder, type="jpg")
   images_path = Pathname.new(File.dirname(__FILE__)) + "samples/#{folder}/"
   path = images_path + "#{name}.#{type}"
-  puts path
   File.open(path)
 end
 

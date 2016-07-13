@@ -26,6 +26,4 @@ describe Admin::SubCategoryHelper do
       expect(helper.breadcrumbs(category, grandchild)).to match(grandchild.name)
     end
   end
-
-
 end

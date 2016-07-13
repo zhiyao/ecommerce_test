@@ -19,7 +19,7 @@
                 %li
                   = check_box_tag("sub_category_ids[]", @category.root.id)
                   = @category.name
-                  = sub_category_tree_filter(@category, @category.root)
+                  = sub_category_tree_filter(@category, @category.root, params[:sub_category_ids])
               %hr
               = submit_tag 'Search', class: 'btn'
 
