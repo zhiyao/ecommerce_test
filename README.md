@@ -6,10 +6,11 @@ experimenting
 
 1) It store product information
 2) listing all products through UI
-3) 
+3) each products can belong to many sub_categories
 4) User can filter products through UI by any or multiple categories.
-5) 
-6)
+5) Categories with no products should not be shown as a filtering option
+6) a product should not belong to the same category tree twice
+7) Admin interface to manipulate data
 
 ## Developing App
 
@@ -36,6 +37,3 @@ To test the app, you could run
 To run and generate the test coverage
 
     SIMPLECOV=true bundle exec rspec spec
-
-
-

@@ -26,6 +26,15 @@ class SubCategory < ActiveRecord::Base
   has_many :sub_categories_products, dependent: :destroy
   has_many :products, through: :sub_categories_products
 
+  after_create :set_category
+
+  def set_category
+    if self.category.nil? and !self.parent.nil?
+      self.category_id = self.parent.category_id
+      self.save!
+    end
+  end
+
   def products?
     total_product_count = self.self_and_descendants.inject(0) {|sum, n| sum + n.products.size}
     total_product_count > 0
