@@ -13,7 +13,7 @@
 #
 
 class Product < ActiveRecord::Base
-  validates :name, :description, :price, presence: true
+  validates :name, :price, presence: true
 
   belongs_to :sub_category, inverse_of: :products, counter_cache: true
   delegate :name, to: :sub_category, prefix: true, nil: true
