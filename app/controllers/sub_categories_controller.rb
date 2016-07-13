@@ -9,4 +9,5 @@ class SubCategoriesController < ApplicationController
     @q = Product.ransack({sub_category_id_in: @sub_category_ids})
     @products = @q.result
   end
+
 end

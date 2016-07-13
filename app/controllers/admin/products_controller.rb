@@ -1,6 +1,6 @@
 module Admin
   class ProductsController < BaseController
-    before_filter :get_product, only: [:edit, :show, :destroy, :update]
+    before_filter :get_product, only: [:edit, :destroy, :update]
 
     def index
       @products = Product.all
@@ -10,17 +10,16 @@ module Admin
       @product = Product.new
     end
 
-    def show
-    end
-
     def edit
     end
 
     def destroy
       if @product.destroy
+        flash[:notice] = 'Successfully destroy'
         redirect_to admin_products_path
       else
         flash[:error] = 'Error destroying'
+        redirect_to admin_products_path
       end
     end
 
@@ -29,7 +28,7 @@ module Admin
         redirect_to admin_products_path,
           notice: 'Successfully updating product'
       else
-        flash[:error] = 'Error updating product'
+        flash[:error] = @product.errors.full_messages
         render 'edit'
       end
     end
@@ -41,7 +40,7 @@ module Admin
         redirect_to admin_products_path,
           notice: 'Successfully creating product'
       else
-        flash[:error] = 'Error creating product'
+        flash[:error] = @product.errors.full_messages
         render 'new'
       end
     end

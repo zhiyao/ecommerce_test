@@ -1,6 +1,6 @@
 module Admin
   class CategoriesController < BaseController
-    before_filter :get_category, only: [:edit, :show, :destroy, :update]
+    before_filter :get_category, only: [:edit, :destroy, :update]
 
     def index
       @categories = Category.all
@@ -10,17 +10,16 @@ module Admin
       @category = Category.new
     end
 
-    def show
-    end
-
     def edit
     end
 
     def destroy
       if @category.destroy
+        flash[:notice] = 'Successfully destroy'
         redirect_to admin_categories_path
       else
         flash[:error] = 'Error destroying'
+        redirect_to admin_categories_path
       end
     end
 

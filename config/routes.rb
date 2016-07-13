@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'products#index'
-    resources :products
-    resources :categories do
+    resources :products, except: :show
+    resources :categories, except: :show do
       resources :sub_categories
     end
   end
