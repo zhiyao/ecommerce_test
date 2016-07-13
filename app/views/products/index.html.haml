@@ -17,7 +17,7 @@
                   %li
                     = check_box_tag("sub_category_ids[]", category.root.id)
                     = category.name
-                    = product_sub_category(category, category.root)
+                    = sub_category_tree_filter(category, category.root)
               %hr
               = submit_tag 'Search', class: 'btn'
 

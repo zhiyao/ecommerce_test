@@ -13,3 +13,5 @@
 /tmp
 /public/uploads
 /coverage
+
+.DS_Store

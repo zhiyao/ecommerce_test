@@ -3,7 +3,7 @@ module ApplicationHelper
     'active' if controller_names.include?(controller.controller_name)
   end
 
-  def product_sub_category(category, sub_category)
+  def sub_category_tree_filter(category, sub_category)
     return '' if sub_category.children.empty?
 
     items = sub_category.children.map do |child|
@@ -11,7 +11,7 @@ module ApplicationHelper
         content_tag(:li,
           (check_box_tag("sub_category_ids[]", child.id) +
           child.name +
-          product_sub_category(category, child)).html_safe)
+          sub_category_tree_filter(category, child)).html_safe)
       end
     end
 

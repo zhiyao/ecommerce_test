@@ -8,5 +8,6 @@
 FactoryGirl.define do
   factory :category do
     name { FFaker::Name.name }
+    banner { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'files', 'banner.jpg')) }
   end
 end

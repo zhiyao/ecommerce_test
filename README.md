@@ -20,4 +20,15 @@ To start the rails server
     rake db:create:all
     rails s
 
+## Testing App
+
+To test the app, you could run
+
+    bundle exec rspec spec
+
+To run and generate the test coverage
+
+    SIMPLECOV=true bundle exec rspec spec
+
+
 
