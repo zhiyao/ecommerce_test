@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     @categories = Category.active
     search_params = build_params
     @q = Product.ransack(search_params)
-    @products = @q.result
+    @products = @q.result.page params[:page]
   end
 
   def show

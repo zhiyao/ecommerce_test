@@ -3,7 +3,7 @@ module Admin
     before_filter :get_product, only: [:edit, :destroy, :update]
 
     def index
-      @products = Product.includes(:sub_categories).all
+      @products = Product.includes(:sub_categories).order(:name).page params[:page]
     end
 
     def new

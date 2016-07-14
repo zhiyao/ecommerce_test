@@ -17,6 +17,7 @@ gem 'material-sass'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ransack'
+gem 'kaminari'
 
 group :development, :test do
   gem 'annotate', require: false
@@ -49,4 +50,3 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
-

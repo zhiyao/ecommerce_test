@@ -3,7 +3,7 @@ module Admin
     before_filter :get_category, only: [:edit, :destroy, :update]
 
     def index
-      @categories = Category.all
+      @categories = Category.order(:name).page params[:page]
     end
 
     def new
