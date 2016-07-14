@@ -17,8 +17,8 @@
 #
 
 class SubCategory < ActiveRecord::Base
-  acts_as_nested_set dependent: :destroy,
-    order_column: :position
+  acts_as_nested_set dependent: :destroy
+    # order_column: :position
 
   validates :name, presence: true
 
@@ -33,6 +33,10 @@ class SubCategory < ActiveRecord::Base
       self.category_id = self.parent.category_id
       self.save!
     end
+  end
+
+  def nested_names
+    self_and_ancestors.pluck(:name).join('>')
   end
 
   def products?

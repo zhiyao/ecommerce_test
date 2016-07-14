@@ -28,7 +28,7 @@ module Admin
         redirect_to admin_products_path,
           notice: 'Successfully updating product'
       else
-        flash[:error] = @product.errors.full_messages
+        flash[:error] = 'Error updating'
         render 'edit'
       end
     end
@@ -40,7 +40,7 @@ module Admin
         redirect_to admin_products_path,
           notice: 'Successfully creating product'
       else
-        flash[:error] = @product.errors.full_messages
+        flash[:error] = 'Error creating'
         render 'new'
       end
     end
@@ -52,7 +52,7 @@ module Admin
     end
 
     def product_params
-      params[:product].permit(:name, :description, :price, :sub_category_id, :image)
+      params.require(:product).permit(:name, :description, :price, :image, sub_category_ids: [])
     end
   end
 end

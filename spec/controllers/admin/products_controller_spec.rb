@@ -16,6 +16,7 @@ RSpec.describe Admin::ProductsController, type: :controller do
   end
 
   describe "GET #edit" do
+    render_views
     it "should render" do
       product = create(:product)
       get :edit, id: product.id

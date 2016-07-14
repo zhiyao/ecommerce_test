@@ -13,7 +13,7 @@
 
   .form-group.form-group-label
     = f.label :sub_category
-    = f.collection_select :sub_category_id, SubCategory.all, :id, :name
+    = f.select :sub_category_ids, SubCategory.all.collect {|x| [x.nested_names, x.id]}, {}, multiple: true, class: 'form-control'
 
   .form-group.form-group-label
     = f.label :image
