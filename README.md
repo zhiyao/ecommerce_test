@@ -26,6 +26,7 @@ Install the gem dependencies
 To start the rails server
 
     rake db:create:all
+    rake db:migrate
     rake db:seed
     rails s
 
@@ -38,6 +39,7 @@ To test the app, you could run
 To run and generate the test coverage
 
     SIMPLECOV=true bundle exec rspec spec
+    open coverage/index.html
 
 ## Issues left to work on
 
