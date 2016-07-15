@@ -8,16 +8,15 @@ module ApplicationHelper
 
     items = categories.each.map do |category|
       content_tag(:li,
-        (check_box_tag("sub_category_ids[]", category.root.id, sub_category_ids.include?("#{category.root.id}"))) +
+        (check_box_tag("sub_category_ids[]", category.root.id, sub_category_ids.include?(category.root.id.to_s))) +
         category.name +
-        sub_category_tree_filter(category, category.root, sub_category_ids)
-      )
+        sub_category_tree_filter(category, category.root, sub_category_ids))
     end
 
     content_tag(:ul, raw(items.join(' ')))
   end
 
-  def sub_category_tree_filter(category, sub_category, sub_category_ids=[])
+  def sub_category_tree_filter(category, sub_category, sub_category_ids = [])
     return '' if sub_category.children.empty?
     sub_category_ids ||= []
 

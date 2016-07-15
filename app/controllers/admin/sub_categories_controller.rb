@@ -13,7 +13,7 @@ module Admin
 
       if @sub_category.save
         redirect_to edit_admin_category_path(@category),
-          notice: 'Successfully save'
+                    notice: 'Successfully save'
       else
         flash[:error] = 'Error saving'
         render 'new'

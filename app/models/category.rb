@@ -14,8 +14,8 @@ class Category < ActiveRecord::Base
 
   has_many :sub_categories, inverse_of: :category
   has_one :root, -> { where parent_id: nil },
-                    class_name: 'SubCategory',
-                    dependent: :destroy
+                class_name: 'SubCategory',
+                dependent: :destroy
 
   scope :active, -> { Category.all.select(&:products?) }
   after_create :set_root
