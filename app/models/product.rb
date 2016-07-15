@@ -23,7 +23,7 @@ end
 class Product < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with UniqueCategoryValidator
-  validates :name, :price, presence: true
+  validates :name, :price, :description, presence: true
 
   has_many :sub_categories_products, dependent: :destroy
   has_many :sub_categories, through: :sub_categories_products
