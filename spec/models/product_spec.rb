@@ -50,6 +50,4 @@ RSpec.describe Product, type: :model do
     expect(product.errors[:description].size).to eq(1)
     expect(product.errors[:price].size).to eq(1)
   end
-
-
 end

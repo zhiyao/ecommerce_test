@@ -9,14 +9,12 @@
     %tr
       %th Banner
       %th Name
-      %th Position
       %th
   %tbody
     - @categories.each do |category|
       %tr
         %td= image_tag(category.banner.thumb)
         %td= category.name
-        %td= category.position
         %td= link_to 'Edit', edit_admin_category_path(category)
         %td= link_to 'Destroy', admin_category_path(category),
           method: :delete,

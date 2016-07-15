@@ -4,7 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  name           :string
-#  position       :integer
 #  category_id    :integer
 #  parent_id      :integer
 #  lft            :integer          not null

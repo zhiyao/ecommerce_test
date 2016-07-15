@@ -6,7 +6,8 @@ module Admin
       items = sub_category.children.map do |child|
           content_tag(:li,
             (child.name +
-            link_to('+', new_admin_category_sub_category_path(category, parent: child)) +
+            link_to('+', new_admin_category_sub_category_path(category, parent: child), class: 'btn btn-green') +
+            link_to('-', [:admin, category, child], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-red') +
             sub_category_tree(category, child)).html_safe)
       end
 

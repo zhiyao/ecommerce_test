@@ -1,3 +1,4 @@
+= render 'shared/errors', errors: product.errors if product.errors
 = form_for [:admin, product] do |f|
   .form-group.form-group-label
     = f.label :name
@@ -14,10 +15,14 @@
   .form-group.form-group-label
     = f.label :sub_category
     = f.select :sub_category_ids, SubCategory.all.collect {|x| [x.nested_names, x.id]}, {}, multiple: true, class: 'form-control'
+    %p.help-block To select multiple categories, hold command or ctrl while clicking the item
 
   .form-group.form-group-label
     = f.label :image
+    %br
+    = image_tag product.image
     = f.file_field :image
+
 
   = f.submit 'Save', class: 'btn btn-green'
   &nbsp;&nbsp;&nbsp;

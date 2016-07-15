@@ -20,6 +20,21 @@ module Admin
       end
     end
 
+    def show
+    end
+
+    def destroy
+      @sub_category = SubCategory.find(params[:id])
+      @category = Category.find(params[:category_id])
+      if @sub_category.destroy
+        flash[:notice] = 'Successfully destroy'
+        redirect_to edit_admin_category_path(@category)
+      else
+        flash[:error] = 'Error destroying'
+        redirect_to edit_admin_category_path(@category)
+      end
+    end
+
     private
       def sub_category_params
         params[:sub_category].permit(:name, :parent_id, :position, :category_id)

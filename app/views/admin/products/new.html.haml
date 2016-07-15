@@ -1,5 +1,4 @@
 = content_for :header do
   %h1 New Product
 
-= render 'shared/errors', errors: @product.errors if @product.errors
 = render 'form', product: @product

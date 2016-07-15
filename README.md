@@ -41,6 +41,8 @@ To run and generate the test coverage
     SIMPLECOV=true bundle exec rspec spec
     open coverage/index.html
 
-## Issues left to work on
+## To navigate to Admin
 
-- A way to allow the product to key in more than one sub-categories
+    /admin
+
+

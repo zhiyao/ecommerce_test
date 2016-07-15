@@ -1,5 +1,4 @@
 = content_for :header do
   %h1 New Category
 
-= render 'shared/errors', errors: @category.errors if @category.errors
 = render 'form', category: @category

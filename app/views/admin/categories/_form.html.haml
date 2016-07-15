@@ -1,15 +1,13 @@
+= render 'shared/errors', errors: category.errors if category.errors
 = form_for [:admin, category] do |f|
   .form-group.form-group-label
     = f.label :name
     = f.text_field :name, class: 'form-control'
 
   .form-group.form-group-label
-    = f.label :position
-    = f.number_field :position, class: 'form-control'
-
-  .form-group.form-group-label
     = f.label :banner
     = f.file_field :banner
+    = image_tag category.banner.thumb
 
   = f.submit 'Save', class: 'btn btn-green'
   &nbsp;&nbsp;&nbsp;
