@@ -18,6 +18,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'ransack'
 gem 'kaminari'
+gem 'money-rails'
 
 group :development, :test do
   gem 'annotate', require: false

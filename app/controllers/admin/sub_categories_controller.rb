@@ -21,8 +21,8 @@ module Admin
     end
 
     private
-    def sub_category_params
-      params[:sub_category].permit(:name, :parent_id, :position, :category_id)
-    end
+      def sub_category_params
+        params[:sub_category].permit(:name, :parent_id, :position, :category_id)
+      end
   end
 end

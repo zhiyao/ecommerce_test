@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  name        :string
 #  description :text
-#  price       :decimal(, )
+#  price_cents :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  image       :string
@@ -23,12 +23,13 @@ end
 class Product < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with UniqueCategoryValidator
-  validates :name, :price, :description, presence: true
+  validates :name, :description, presence: true
+
+  monetize :price_cents, numericality: { greater_than_or_equal_to: 0 }
 
   has_many :sub_categories_products, dependent: :destroy
   has_many :sub_categories, through: :sub_categories_products
   delegate :name, to: :sub_category, prefix: true, nil: true
 
   mount_uploader :image, ImageUploader
-
 end

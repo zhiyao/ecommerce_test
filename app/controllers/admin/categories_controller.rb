@@ -46,12 +46,12 @@ module Admin
     end
 
     private
-    def get_category
-      @category = Category.find(params[:id])
-    end
+      def get_category
+        @category = Category.find(params[:id])
+      end
 
-    def category_params
-      params[:category].permit(:name, :position, :banner)
-    end
+      def category_params
+        params[:category].permit(:name, :position, :banner)
+      end
   end
 end

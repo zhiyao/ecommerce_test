@@ -19,7 +19,8 @@
         %td= image_tag(product.image.thumb)
         %td= product.name
         %td= product.description
-        %td= product.price
+        %td
+          = humanized_money_with_symbol product.price
         %td
           - product.sub_categories.each do |sub_category|
             = sub_category.nested_names

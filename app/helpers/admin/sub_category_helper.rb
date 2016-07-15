@@ -17,6 +17,7 @@ module Admin
       return "" if sub_category.nil?
       crumbs = [content_tag(:li, link_to('Admin', root_path) + seperator.html_safe)]
       crumbs << content_tag(:li, link_to('Categories', admin_categories_path) + seperator.html_safe)
+
       if sub_category
         crumbs << content_tag(:li, link_to(category.name, edit_admin_category_path(category))  + seperator.html_safe)
         sub_category_ancestors_except_root = sub_category.ancestors - [category.root]
@@ -29,6 +30,7 @@ module Admin
           end
         end
       end
+
       crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join), class: 'inline')
       content_tag(:nav, crumb_list, id: 'breadcrumbs')
     end

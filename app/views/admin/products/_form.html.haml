@@ -9,7 +9,7 @@
 
   .form-group.form-group-label
     = f.label :price
-    = f.number_field :price, class: 'form-control'
+    = f.text_field :price, class: 'form-control'
 
   .form-group.form-group-label
     = f.label :sub_category
@@ -20,4 +20,5 @@
     = f.file_field :image
 
   = f.submit 'Save', class: 'btn btn-green'
+  &nbsp;&nbsp;&nbsp;
   = link_to 'Cancel', admin_products_path, class: 'btn-red btn-flat'

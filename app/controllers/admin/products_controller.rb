@@ -46,13 +46,12 @@ module Admin
     end
 
     private
+      def get_product
+        @product = Product.find(params[:id])
+      end
 
-    def get_product
-      @product = Product.find(params[:id])
-    end
-
-    def product_params
-      params.require(:product).permit(:name, :description, :price, :image, sub_category_ids: [])
-    end
+      def product_params
+        params.require(:product).permit(:name, :description, :price, :image, sub_category_ids: [])
+      end
   end
 end

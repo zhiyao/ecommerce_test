@@ -116,6 +116,16 @@ GEM
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    monetize (1.4.0)
+      money (~> 6.7)
+    money (6.7.1)
+      i18n (>= 0.6.4, <= 0.7.0)
+      sixarm_ruby_unaccent (>= 1.1.1, < 2)
+    money-rails (1.6.2)
+      activesupport (>= 3.0)
+      monetize (~> 1.4.0)
+      money (~> 6.7)
+      railties (>= 3.0)
     multi_json (1.12.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -209,6 +219,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sixarm_ruby_unaccent (1.1.1)
     spring (1.6.4)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -259,6 +270,7 @@ DEPENDENCIES
   kaminari
   material-sass
   mini_magick
+  money-rails
   pg (~> 0.15)
   quiet_assets
   rails (= 4.2.6)

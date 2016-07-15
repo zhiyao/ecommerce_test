@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  name        :string
 #  description :text
-#  price       :decimal(, )
+#  price_cents :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  image       :string
@@ -19,7 +19,7 @@ RSpec.describe Product, type: :model do
     expect(build(:product)).to be_valid
   end
 
-  it "should has many sub categories" do
+  it "should be able to belong to many categories, subcategories and sub-subcategories" do
     category_1 = create(:category)
     root_category = category_1.root
     child_category = create(:sub_category, parent: root_category)
@@ -43,7 +43,7 @@ RSpec.describe Product, type: :model do
   end
 
   it "should validate it has product name, description and price" do
-    product = build(:product, name: '', description: '', price: nil)
+    product = build(:product, name: '', description: '', price: '')
     expect(product.valid?).to be_falsy
 
     expect(product.errors[:name].size).to eq(1)

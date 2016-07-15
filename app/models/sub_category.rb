@@ -18,7 +18,6 @@
 
 class SubCategory < ActiveRecord::Base
   acts_as_nested_set dependent: :destroy
-    # order_column: :position
 
   validates :name, presence: true
 
