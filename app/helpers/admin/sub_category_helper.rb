@@ -32,7 +32,7 @@ module Admin
         end
       end
 
-      crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join), class: 'inline')
+      crumb_list = content_tag(:ul, raw(crumbs.flatten.map(&:mb_chars).join), class: 'inline')
       content_tag(:nav, crumb_list, id: 'breadcrumbs')
     end
   end

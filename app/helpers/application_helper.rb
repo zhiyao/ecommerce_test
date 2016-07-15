@@ -22,12 +22,11 @@ module ApplicationHelper
     sub_category_ids ||= []
 
     items = sub_category.children.map do |child|
-      if child.products?
-        content_tag(:li,
-          (check_box_tag('sub_category_ids[]', child.id, sub_category_ids.include?("#{child.id}")) +
-          child.name +
-          sub_category_tree_filter(category, child, sub_category_ids)).html_safe)
-      end
+      next unless child.products?
+      content_tag(:li,
+        (check_box_tag('sub_category_ids[]', child.id, sub_category_ids.include?(child.id.to_s)) +
+        child.name +
+        sub_category_tree_filter(category, child, sub_category_ids)).html_safe)
     end
 
     content_tag(:ul, raw(items.join(' ')))
@@ -47,7 +46,7 @@ module ApplicationHelper
       end
     end
 
-    crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join), class: 'inline')
+    crumb_list = content_tag(:ul, raw(crumbs.flatten.map(&:mb_chars).join), class: 'inline')
     content_tag(:nav, crumb_list, id: 'breadcrumbs')
   end
 end

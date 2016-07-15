@@ -38,7 +38,7 @@ class SubCategory < ActiveRecord::Base
   end
 
   def products?
-    total_product_count = self_and_descendants.inject(0) { |sum, n| sum + n.products.size }
+    total_product_count = self_and_descendants.inject(0) { |a, e| a + e.products.size }
     total_product_count > 0
   end
 
