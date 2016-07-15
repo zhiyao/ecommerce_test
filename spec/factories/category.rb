@@ -5,9 +5,11 @@
 #  updated_at :datetime         not null
 #  banner     :string
 
+image_fixture = Rack::Test::UploadedFile.new(
+                  File.join(Rails.root, 'spec', 'fixtures', 'files', 'banner.jpg'))
 FactoryGirl.define do
   factory :category do
     name { FFaker::Name.name }
-    banner { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'files', 'banner.jpg')) }
+    banner { image_fixture }
   end
 end

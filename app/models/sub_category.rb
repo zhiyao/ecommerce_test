@@ -27,9 +27,9 @@ class SubCategory < ActiveRecord::Base
   after_create :set_category
 
   def set_category
-    if self.category.nil? and !self.parent.nil?
-      self.category_id = self.parent.category_id
-      self.save!
+    if category.nil? && !parent.nil?
+      self.category_id = parent.category_id
+      save!
     end
   end
 
@@ -38,7 +38,7 @@ class SubCategory < ActiveRecord::Base
   end
 
   def products?
-    total_product_count = self.self_and_descendants.inject(0) {|sum, n| sum + n.products.size}
+    total_product_count = self_and_descendants.inject(0) { |sum, n| sum + n.products.size }
     total_product_count > 0
   end
 
@@ -52,6 +52,6 @@ class SubCategory < ActiveRecord::Base
   end
 
   def node_and_descendants_ids
-    array = self.self_and_descendants.pluck(:id)
+    self_and_descendants.pluck(:id)
   end
 end

@@ -16,17 +16,16 @@ module Admin
     def destroy
       if @product.destroy
         flash[:notice] = 'Successfully destroy'
-        redirect_to admin_products_path
       else
         flash[:error] = 'Error destroying'
-        redirect_to admin_products_path
       end
+      redirect_to admin_products_path
     end
 
     def update
       if @product.update_attributes(product_params)
         redirect_to admin_products_path,
-          notice: 'Successfully updating product'
+                    notice: 'Successfully updating product'
       else
         flash[:error] = 'Error updating'
         render 'edit'
@@ -38,7 +37,7 @@ module Admin
 
       if @product.save
         redirect_to admin_products_path,
-          notice: 'Successfully creating product'
+                    notice: 'Successfully creating product'
       else
         flash[:error] = 'Error creating'
         render 'new'
@@ -46,12 +45,13 @@ module Admin
     end
 
     private
-      def get_product
-        @product = Product.find(params[:id])
-      end
 
-      def product_params
-        params.require(:product).permit(:name, :description, :price, :image, sub_category_ids: [])
-      end
+    def get_product
+      @product = Product.find(params[:id])
+    end
+
+    def product_params
+      params.require(:product).permit(:name, :description, :price, :image, sub_category_ids: [])
+    end
   end
 end

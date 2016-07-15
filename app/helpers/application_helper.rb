@@ -24,7 +24,7 @@ module ApplicationHelper
     items = sub_category.children.map do |child|
       if child.products?
         content_tag(:li,
-          (check_box_tag("sub_category_ids[]", child.id, sub_category_ids.include?("#{child.id}")) +
+          (check_box_tag('sub_category_ids[]', child.id, sub_category_ids.include?("#{child.id}")) +
           child.name +
           sub_category_tree_filter(category, child, sub_category_ids)).html_safe)
       end
@@ -34,13 +34,16 @@ module ApplicationHelper
   end
 
   def product_breadcrumbs(sub_category)
-    seperator="&nbsp;&raquo;&nbsp;"
-    return "" if sub_category.nil?
+    seperator = '&nbsp;&raquo;&nbsp;'
+    return '' if sub_category.nil?
 
     crumbs = [content_tag(:li, link_to('Home', root_path) + seperator.html_safe)]
     if sub_category
       crumbs << sub_category.self_and_ancestors.collect do |ancestor|
-        content_tag(:li, link_to(ancestor.name, products_path(sub_category_ids: [ancestor])) + seperator.html_safe )
+        content_tag(:li,
+                    link_to(ancestor.name,
+                            products_path(sub_category_ids: [ancestor])) +
+                    seperator.html_safe)
       end
     end
 

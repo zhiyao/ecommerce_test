@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe SubCategoriesController, type: :controller do
-  describe "GET show" do
+  describe 'GET show' do
     render_views
     before do
       @category = create(:category)
@@ -12,7 +12,7 @@ RSpec.describe SubCategoriesController, type: :controller do
       @category.reload
     end
 
-    it "should show all the products under the sub_category" do
+    it 'should show all the products under the sub_category' do
       get :show, id: @category.root
       expect(response).to be_success
       expect(response.body.match(@product.name)).to be_truthy

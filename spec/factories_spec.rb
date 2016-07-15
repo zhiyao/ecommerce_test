@@ -9,7 +9,7 @@ describe 'factories' do
         expect(entity).to be_valid unless entity.is_a? OpenStruct
       end
 
-      it "should not raise error when created" do
+      it 'should not raise error when created' do
         expect { entity }.to_not raise_error
       end
     end

@@ -14,24 +14,24 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-
-  it "should have a valid factory" do
+  it 'should have a valid factory' do
     expect(build(:product)).to be_valid
   end
 
-  it "should be able to belong to many categories, subcategories and sub-subcategories" do
+  it 'should be able to belong to many categories, subcategories' do
     category_1 = create(:category)
     root_category = category_1.root
     child_category = create(:sub_category, parent: root_category)
     grandchild_category = create(:sub_category, parent: child_category)
     category_2 = create(:category)
-    product = build(:product, sub_categories: [category_2.root, grandchild_category])
+    product = build(:product,
+              sub_categories: [category_2.root, grandchild_category])
 
     expect(product.sub_categories).to include(category_2.root)
     expect(product.sub_categories).to include(grandchild_category)
   end
 
-  it "should not belong to the same category twice" do
+  it 'should not belong to the same category twice' do
     category_1 = create(:category)
     root_category = category_1.root
     child_category = create(:sub_category, parent: root_category)
@@ -42,7 +42,7 @@ RSpec.describe Product, type: :model do
     expect(product.errors[:category].size).to eq(1)
   end
 
-  it "should validate it has product name, description and price" do
+  it 'should validate it has product name, description and price' do
     product = build(:product, name: '', description: '', price: '')
     expect(product.valid?).to be_falsy
 

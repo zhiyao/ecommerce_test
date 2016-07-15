@@ -1,6 +1,6 @@
 module Admin
   class CategoriesController < BaseController
-    before_filter :get_category, only: [:edit, :destroy, :update]
+    before_filter :load_category, only: [:edit, :destroy, :update]
 
     def index
       @categories = Category.order(:name).page params[:page]
@@ -16,17 +16,16 @@ module Admin
     def destroy
       if @category.destroy
         flash[:notice] = 'Successfully destroy'
-        redirect_to admin_categories_path
       else
         flash[:error] = 'Error destroying'
-        redirect_to admin_categories_path
       end
+      redirect_to admin_categories_path
     end
 
     def update
       if @category.update_attributes(category_params)
         redirect_to admin_categories_path,
-          notice: 'Successfully updating category'
+                    notice: 'Successfully updating category'
       else
         flash[:error] = 'Error updating product'
         render 'edit'
@@ -46,12 +45,13 @@ module Admin
     end
 
     private
-      def get_category
-        @category = Category.find(params[:id])
-      end
 
-      def category_params
-        params[:category].permit(:name, :position, :banner)
-      end
+    def load_category
+      @category = Category.find(params[:id])
+    end
+
+    def category_params
+      params[:category].permit(:name, :position, :banner)
+    end
   end
 end

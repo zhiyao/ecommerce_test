@@ -14,20 +14,20 @@ module Admin
       content_tag(:ul, raw(items.join(' ')))
     end
 
-    def breadcrumbs(category, sub_category, seperator="&nbsp;&raquo;&nbsp;")
+    def breadcrumbs(category, sub_category, seperator='&nbsp;&raquo;&nbsp;')
       return "" if sub_category.nil?
       crumbs = [content_tag(:li, link_to('Admin', root_path) + seperator.html_safe)]
       crumbs << content_tag(:li, link_to('Categories', admin_categories_path) + seperator.html_safe)
 
       if sub_category
-        crumbs << content_tag(:li, link_to(category.name, edit_admin_category_path(category))  + seperator.html_safe)
+        crumbs << content_tag(:li, link_to(category.name, edit_admin_category_path(category)) + seperator.html_safe)
         sub_category_ancestors_except_root = sub_category.ancestors - [category.root]
         if sub_category != category.root
           sub_category_ancestors_except_root += [sub_category]
         end
         unless sub_category_ancestors_except_root.empty?
           crumbs << sub_category_ancestors_except_root.collect do |ancestor|
-              content_tag(:li, (ancestor.name + seperator).html_safe )
+            content_tag(:li, (ancestor.name + seperator).html_safe)
           end
         end
       end
