@@ -26,4 +26,25 @@ RSpec.describe Admin::SubCategoriesController, type: :controller do
       expect(flash.now).not_to be_nil
     end
   end
+
+  describe "DELETE #destroy" do
+    it "should be allow to destroy" do
+      category = create(:category)
+      sub_category = create(:sub_category, parent: category.root)
+
+      delete :destroy, category_id: category.id, id: sub_category
+      expect(flash[:notice]).not_to be_nil
+      expect(response).to redirect_to edit_admin_category_path(category)
+    end
+
+    it "should not allow destroy" do
+      category = create(:category)
+      sub_category = create(:sub_category, parent: category.root)
+      allow(SubCategory).to receive(:find).and_return(sub_category)
+      allow(sub_category).to receive(:destroy).and_return(false)
+      delete :destroy, category_id: category.id, id: sub_category
+      expect(flash[:error]).not_to be_nil
+      expect(response).to redirect_to edit_admin_category_path(category)
+    end
+  end
 end
